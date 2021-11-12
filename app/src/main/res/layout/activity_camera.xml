@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.opencv.android.JavaCameraView
+        android:layout_width="310dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:id="@+id/frame_Surface"/>
+
+
+
+    <RelativeLayout
+        android:layout_gravity="bottom|left"
+        android:layout_marginLeft="30dp"
+        android:layout_width="150dp"
+        android:layout_height="210dp"
+        tools:context=".CameraActivity">
+
+        <!--<TextView
+            android:id="@+id/identity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="People Name" />
+
+        <TextView
+            android:id="@+id/dateOf_birth"
+            android:layout_below="@+id/identity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="20.02.1997" />-->
+
+        <Button
+            android:id="@+id/identity_name"
+            android:text="People Name:"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/dateOf_birth"
+            android:layout_below="@+id/identity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Date of Birth:"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/gender"
+            android:layout_below="@+id/dateOf_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Cinsiyet:"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/job"
+            android:layout_below="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Meslek:"
+            android:textAllCaps="false"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="20dp"
+        android:layout_width="185dp"
+        android:layout_height="210dp"
+        tools:context=".CameraActivity">
+
+
+        <TextView
+            android:id="@+id/identity_nameTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            android:text="Aydın BEKOĞLU" />
+
+        <TextView
+            android:id="@+id/dateOf_birthTXT"
+            android:layout_below="@+id/identity_nameTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="20.02.1997" />
+
+        <TextView
+            android:id="@+id/genderTXT"
+            android:layout_below="@+id/dateOf_birthTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Erkek" />
+
+        <TextView
+            android:id="@+id/jobTXT"
+            android:layout_below="@+id/genderTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Futbolcu" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
+
