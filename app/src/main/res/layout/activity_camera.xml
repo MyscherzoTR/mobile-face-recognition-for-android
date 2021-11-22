@@ -13,6 +13,28 @@
         android:layout_marginTop="10dp"
         android:id="@+id/frame_Surface"/>
 
+    <!-- First we will create a linear layout to keep all icon in one place-->
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="115dp">
+
+        <!-- put our icon in this place -->
+        <!--
+         1dp = 2px
+         src = use to define path of image
+         -->
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/flip_camera"
+            android:src="@drawable/flip_camera"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
 
 
     <RelativeLayout

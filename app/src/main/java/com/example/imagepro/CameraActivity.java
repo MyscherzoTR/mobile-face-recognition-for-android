@@ -13,9 +13,11 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
@@ -44,6 +47,14 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
 
+    // call for image view of flip button
+    private ImageView flip_camera;
+    /*define int that represent camera
+            0 - back camera
+            1- front camera
+            initially it will start with back camera
+            */
+    private  int mCameraId=0;
 
 
     // ver tabanı aç
@@ -177,6 +188,15 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.frame_Surface);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
+        flip_camera = findViewById(R.id.flip_camera);
+        // when flip camera button is clicked
+        flip_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // this function will change camera
+                swapCamera();
+            }
+        });
         //mOpenCvCameraView.enableFpsMeter();
 
         // call it in onCreate
@@ -193,6 +213,17 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
             // if you get error
             Log.d("CameraActivity", "model is not loaded");
         }
+    }
+
+    private void swapCamera() {
+        // first change mCameraId
+         mCameraId = mCameraId^1; // basic not operation
+        //disable current cameraview
+        mOpenCvCameraView.disableView();
+        //setCameraIndex
+        mOpenCvCameraView.setCameraIndex(mCameraId);
+        //enable view
+        mOpenCvCameraView.enableView();
     }
 
     @Override
@@ -240,6 +271,17 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     public  Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame){
         mRgba=inputFrame.rgba();
         mGray=inputFrame.gray();
+
+        /*  first add flip camera button image from Vector asset
+            add flip camera image in activity_camera
+            change camera from back to front there is a rotation problem
+            front camera is rotated by 180
+            so when mCameraId is 1 (front) rotate camera frame with 180 degree*/
+        if (mCameraId==1)
+        {
+            Core.flip(mRgba,mRgba,-1);
+            Core.flip(mGray,mGray,-1);
+        }
 
         // pass input as mRgba
         mRgba=face_Recognition.recognizeImage(mRgba);

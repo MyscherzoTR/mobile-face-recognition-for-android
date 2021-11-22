@@ -5,10 +5,10 @@
 5    android:versionName="3.4.13" >
 6
 7    <uses-sdk
-7-->E:\AndroidStudioProjects\ImagePro\openCVLibrary3413\src\main\AndroidManifest.xml:7:5-73
+7-->F:\AndroidStudioProjects\ImagePro\openCVLibrary3413\src\main\AndroidManifest.xml:7:5-73
 8        android:minSdkVersion="21"
-8-->E:\AndroidStudioProjects\ImagePro\openCVLibrary3413\src\main\AndroidManifest.xml:7:15-40
+8-->F:\AndroidStudioProjects\ImagePro\openCVLibrary3413\src\main\AndroidManifest.xml:7:15-40
 9        android:targetSdkVersion="31" />
-9-->E:\AndroidStudioProjects\ImagePro\openCVLibrary3413\src\main\AndroidManifest.xml:7:41-70
+9-->F:\AndroidStudioProjects\ImagePro\openCVLibrary3413\src\main\AndroidManifest.xml:7:41-70
 10
 11</manifest>
