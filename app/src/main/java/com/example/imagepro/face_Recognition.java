@@ -314,121 +314,133 @@ public class face_Recognition  extends AppCompatActivity {
             job = "Actor";
         }
         else if (read_face>=8.5 & read_face < 9.5){
+            identityName="aydın";
+            dateOfBirth = "06.07.1997";
+            gender = "Male";
+            job = "Actor / Writer / Producer";
+        }
+       else if (read_face>=9.5 & read_face < 10.5){
             identityName="Matthew Perry";
             dateOfBirth = "19.08.1969";
             gender = "Male";
             job = "Actor / Producer / Writer";
         }
-        else if (read_face>=9.5 & read_face < 10.5){
+        else if (read_face>=10.5 & read_face < 11.5){
             identityName="Sylvester Stallone";
             dateOfBirth = "06.07.1964";
             gender = "Male";
             job = "Actor / Writer / Producer";
         }
-        else if (read_face>=10.5 & read_face < 11.5){
+        else if (read_face>=11.5 & read_face < 12.5){
             identityName="Messi";
             dateOfBirth = "24.06.1987";
             gender = "Male";
             job = "Football Player";
         }
-        else if (read_face>=11.5 & read_face < 12.5){
+        else if (read_face>=12.5 & read_face < 13.5){
             identityName="Jim Parsons";
             dateOfBirth = "24.03.1973";
             gender = "Male";
             job = "Actor / Soundtrack / Producer";
         }
-        else if (read_face>=12.5 & read_face < 13.5){
+        else if (read_face>=13.5 & read_face < 14.5){
             identityName="Not in Dataset";
             dateOfBirth = "None";
             gender = "None";
             job = "None";
         }
-        else if (read_face>=13.5 & read_face < 14.5){
+        else if (read_face>=14.5 & read_face < 15.5){
             identityName="Lisa Kudrow";
             dateOfBirth = "30.07.1963";
             gender = "Female";
             job = "Actress / Writer / Producer";
         }
-        else if (read_face>=14.5 & read_face < 15.5){
+        else if (read_face>=15.5 & read_face < 16.5){
             identityName="Muhammet Ali";
             dateOfBirth = "17.01.1942";
             gender = "Male";
             job = "Boxer";
         }
-        else if (read_face>=15.5 & read_face < 16.5){
+        else if (read_face>=16.5 & read_face < 17.5){
             identityName="Brad_Pitt";
             dateOfBirth = "18.12.1963";
             gender = "Male";
             job = "Producer / Actor";
         }
-        else if (read_face>=16.5 & read_face < 17.5){
+        else if (read_face>=17.5 & read_face < 18.5){
             identityName="Ronaldo";
             dateOfBirth = "05.02.1985";
             gender = "Male";
             job = "Football Player";
         }
-        else if (read_face>=17.5 & read_face < 18.5){
+        else if (read_face>=18.5 & read_face < 19.5){
             identityName="Virat Kohli";
             dateOfBirth = "05.11.1988";
             gender = "Male";
             job = "Avtor";
         }
-        else if (read_face>=18.5 & read_face < 19.5){
+        else if (read_face>=19.5 & read_face < 20.5){
             identityName="Angelina Jolie";
             dateOfBirth = "04.06.1975";
             gender = "Female";
             job = "Actress / Producer / Director";
         }
-        else if (read_face>=19.5 & read_face < 20.5){
-            identityName="Kunal Navya / Kunal Nayyar";
+        else if (read_face>=20.5 & read_face < 21.5){
+            identityName="Kunal Nayyar";
             dateOfBirth = "30.04.1981";
             gender = "Male";
             job = "Actor / Producer";
         }
-        else if (read_face>=20.5 & read_face < 21.5){
-            identityName="Manoj Bajpaye";
+        else if (read_face>=21.5 & read_face < 22.5){
+            identityName="Manoj Bajpayee";
             dateOfBirth = "23.04.1969";
             gender = "Male";
             job = "Actor / Music Department / Producer";
         }
-        else if (read_face>=21.5 & read_face < 22.5){
-            identityName="Sachin Tendulka";
+        else if (read_face>=22.5 & read_face < 23.5){
+            identityName="Sachin Tendulkar";
             dateOfBirth = "24.04.1973";
             gender = "Male";
             job = "Actor / Producer";
         }
-        else if (read_face>=22.5 & read_face < 23.5){
+        else if (read_face>=23.5 & read_face < 24.5){
             identityName="Jennifer Aniston";
             dateOfBirth = "11.02.1969";
             gender = "Female";
             job = "Actress / Producer / Director";
         }
-        else if (read_face>=23.5 & read_face < 24.5){
+        else if (read_face>=24.5 & read_face < 25.5){
+            identityName="SERKAN OZKAN";
+            dateOfBirth = "1996";
+            gender = "Male";
+            job = "Student";
+        }
+        else if (read_face>=25.5 & read_face < 26.5){
             identityName="Dhoni";
             dateOfBirth = "07.07.1981";
             gender = "Male";
             job = "Kriket Player";
         }
-        else if (read_face>=24.5 & read_face < 25.5){
+        else if (read_face>=26.5 & read_face < 27.5){
             identityName="Pewdiepie";
             dateOfBirth = "24.10.1989";
             gender = "Male";
             job = "Youtuber";
         }
-        else if (read_face>=25.5 & read_face < 26.5){
+        else if (read_face>=27.5 & read_face < 28.5){
             identityName="Aishwarya Rai";
             dateOfBirth = "01.11.1973";
             gender = "Female";
             job = "Actress / Producer / Soundtrack";
         }
-        else if (read_face>=26.5 & read_face < 27.5){
-            identityName="Johnny Galeck";
+        else if (read_face>=28.5 & read_face < 29.5){
+            identityName="Johnny Galecki";
             dateOfBirth = "30.04.1975";
             gender = "Male";
             job = "Actor / Producer / Writer";
         }
-        else if (read_face>=27.5 & read_face < 28.5){
-            identityName="Rohit_Sharma";
+        else if (read_face>=29.5 & read_face < 30.5){
+            identityName="Rohit Sharma";
             dateOfBirth = "15.06.1985";
             gender = "Male";
             job = "Actor";

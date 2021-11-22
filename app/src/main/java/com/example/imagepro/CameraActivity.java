@@ -185,7 +185,7 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
             //input size of model is 96
             face_Recognition = new face_Recognition(getAssets(),
                     CameraActivity.this,
-                    "EfficientNet_model.tflite",
+                    "MyModel.tflite",
                     inputSize);
         }
         catch ( IOException e){
