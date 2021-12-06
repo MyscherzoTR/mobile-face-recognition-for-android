@@ -314,10 +314,10 @@ public class face_Recognition  extends AppCompatActivity {
             job = "Actor";
         }
         else if (read_face>=8.5 & read_face < 9.5){
-            identityName="aydın";
+            identityName="AYDIN BEKOGLU";
             dateOfBirth = "06.07.1997";
             gender = "Male";
-            job = "Actor / Writer / Producer";
+            job = "Kocaeli University Student";
         }
        else if (read_face>=9.5 & read_face < 10.5){
             identityName="Matthew Perry";
@@ -413,7 +413,7 @@ public class face_Recognition  extends AppCompatActivity {
             identityName="SERKAN OZKAN";
             dateOfBirth = "1996";
             gender = "Male";
-            job = "Student";
+            job = "Kocaeli University Student";
         }
         else if (read_face>=25.5 & read_face < 26.5){
             identityName="Dhoni";

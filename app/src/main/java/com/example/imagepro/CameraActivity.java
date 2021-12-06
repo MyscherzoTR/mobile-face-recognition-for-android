@@ -201,11 +201,11 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
         // call it in onCreate
         try {
-            int inputSize=96;
+            int inputSize=100;
             //input size of model is 96
             face_Recognition = new face_Recognition(getAssets(),
                     CameraActivity.this,
-                    "MyModel.tflite",
+                    "MyLastModel.tflite",
                     inputSize);
         }
         catch ( IOException e){
