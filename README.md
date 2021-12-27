@@ -9,6 +9,7 @@ My dataset consists of 32 people. I used EfficientNet to train the model. I conv
 - Kimlik Tespit Kısmı
 - Google Firebase
 - Örnek Çıktılar
+- Uygulama Kullanımı Video
 
 ## Main Menu
 There are 1 buttons in the Main Menu. 
@@ -45,3 +46,6 @@ Sample outputs of some celebrities are below.
 
 <p align="center"> <img src="https://user-images.githubusercontent.com/51875713/147479626-f83f28e9-60bd-41d4-8f43-8ce5eedf20ef.jpg" width="260"></img> 
 <img src="https://user-images.githubusercontent.com/51875713/147479629-3303305c-8800-4dcc-b104-8caac4977054.jpg" width="260"></img></p>
+
+## Uygulama Kullanımı Video
+<p align="center">https://user-images.githubusercontent.com/51875713/147492584-67ed4c59-36a7-4eed-8b5b-0ff834df5a53.mp4</p>
