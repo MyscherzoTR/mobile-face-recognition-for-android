@@ -24,7 +24,7 @@ This is how the identification part is designed. It works real-time(google fireb
 ## Google Firebase
 Firebase database as follows.
 
-<p align="center"> <https://user-images.githubusercontent.com/51875713/147479221-95175131-61c0-4288-bc55-65508d2c19c9.png" width="260"></img></p>
+<p align="center"> <<img src="https://user-images.githubusercontent.com/51875713/147479221-95175131-61c0-4288-bc55-65508d2c19c9.png" width="260"></img></p>
 
 ## Örnek Çıktılar
 Sample outputs of some celebrities are below.
