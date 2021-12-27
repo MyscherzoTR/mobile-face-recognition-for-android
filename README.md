@@ -14,7 +14,7 @@ There are 1 buttons in the Main Menu.
 <p align="center"> <img src="https://user-images.githubusercontent.com/51875713/147478342-d0723d19-d472-4e57-a622-49a774039d14.jpg" width="260"></img></p>
 
 ## Kimlik Tespit Kısmı
-This is how the identification part is designed. It works real-time(google firebase).
+This is how the identification part is designed. It works real-time(google firebase). It is possible to do this from the front or rear camera.
 
 <p align="center"> <img src="https://user-images.githubusercontent.com/51875713/147478527-5a54abe7-8032-4d58-ba8d-5b1a782efef3.jpg" width="260"></img></p>
 
