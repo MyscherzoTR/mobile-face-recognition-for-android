@@ -1,6 +1,9 @@
 # mobile-face-recognition-for-android
 Proje A - mobile face recognition for android
 
+My dataset consists of 32 people. I used EfficientNet to train the model. I converted the Trained Model to tensorflow lite.
+<p align="center"> <img src="https://user-images.githubusercontent.com/51875713/147480642-16fcdecb-02a6-4fc9-bb2b-6811311d4566.png" width="450"></img></p>
+
 ## İçerikler
 - Main Menu
 - Kimlik Tespit Kısmı
