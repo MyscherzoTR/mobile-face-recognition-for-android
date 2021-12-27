@@ -47,7 +47,7 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
 
-    // call for image view of flip button
+
     private ImageView flip_camera;
     /*define int that represent camera
             0 - back camera
@@ -57,12 +57,10 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     private  int mCameraId=0;
 
 
-    // ver tabanı aç
     FirebaseDatabase database;
-    //veri yolu
     DatabaseReference veriyolu;
 
-    //define our class
+
     private  face_Recognition face_Recognition;
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -96,22 +94,17 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
 
         int MY_PERMISSIONS_REQUEST_CAMERA=0;
-        // Here, this is the current activity
+
         // if camera permission is not given it will ask for it on device
         if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_DENIED)
         {
-
                 ActivityCompat.requestPermissions(CameraActivity.this,new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA );
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+
         }
 
 
-
         setContentView(R.layout.activity_camera);
-
 
 
 
@@ -148,9 +141,6 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
 
 
-
-
-
         veriyolu.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -182,9 +172,6 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
 
 
-
-
-
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.frame_Surface);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
@@ -192,17 +179,14 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         // when flip camera button is clicked
         flip_camera.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // this function will change camera
-                swapCamera();
-            }
+            public void onClick(View v) {swapCamera();}
         });
+
         //mOpenCvCameraView.enableFpsMeter();
 
-        // call it in onCreate
         try {
             int inputSize=105;
-            //input size of model is 96
+            //input size of model is 105
             face_Recognition = new face_Recognition(getAssets(),
                     CameraActivity.this,
                     "Newmodel.tflite",
@@ -210,19 +194,15 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         }
         catch ( IOException e){
             e.printStackTrace();
-            // if you get error
             Log.d("CameraActivity", "model is not loaded");
         }
     }
 
     private void swapCamera() {
-        // first change mCameraId
-         mCameraId = mCameraId^1; // basic not operation
-        //disable current cameraview
+
+         mCameraId = mCameraId^1;
         mOpenCvCameraView.disableView();
-        //setCameraIndex
         mOpenCvCameraView.setCameraIndex(mCameraId);
-        //enable view
         mOpenCvCameraView.enableView();
     }
 
@@ -231,12 +211,10 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         super.onResume();
 
         if (OpenCVLoader.initDebug()){
-            //if load success
             Log.d(TAG,"Opencv initialization is done");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
         else{
-            //if not loaded
             Log.d(TAG,"Opencv is not loaded. try again");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_4_0,this,mLoaderCallback);
         }
@@ -272,22 +250,15 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         mRgba=inputFrame.rgba();
         mGray=inputFrame.gray();
 
-        /*  first add flip camera button image from Vector asset
-            add flip camera image in activity_camera
-            change camera from back to front there is a rotation problem
-            front camera is rotated by 180
-            so when mCameraId is 1 (front) rotate camera frame with 180 degree*/
+
         if (mCameraId==1)
         {
             Core.flip(mRgba,mRgba,-1);
             Core.flip(mGray,mGray,-1);
         }
 
-        // pass input as mRgba
         mRgba=face_Recognition.recognizeImage(mRgba);
 
-        //output is saved in mRgba
-        // we will show returned mRgba to screen
         return  mRgba;
     }
 }

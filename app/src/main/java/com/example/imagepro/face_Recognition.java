@@ -40,81 +40,65 @@ import java.nio.channels.FileChannel;
 import java.util.function.Function;
 
 public class face_Recognition  extends AppCompatActivity {
-    // First add implementation of tensorflow in build.gradle Module
 
-
-    // değişkenler
     String dateOfBirth, gender, job;
 
 
-    //import interpreter
+
     private Interpreter interpreter;
 
 
-    //define input size of model
     private  int INPUT_SIZE;
 
-    //define height & width of frame
+
     private  int height=0;
     private int width=0;
 
-    //define GpuDelegate
+
     private GpuDelegate gpuDelegate=null;
     // This is used to run model using GPU
 
 
-    // Now define CascadeClassifier
     private CascadeClassifier cascadeClassifier;
 
 
-    //create
     face_Recognition(AssetManager assetManager, Context context, String modelPath, int input_size) throws IOException{
         // call this class in CameraActivity
 
-        // get INPUT_SIZE
         INPUT_SIZE = input_size;
 
-        //set GPU for the interpreter
+
         Interpreter.Options options = new Interpreter.Options();
         gpuDelegate = new GpuDelegate();
-        //if you are using Efficient mode you can use GPU as it does not support GPU
-        // Still without GPU frame rate is Ok
-        // But if you are using MobileNet model -- options.addDelegate(gpuDelegate);
-        // Now I am using EfficientNet model
+
 
 
         // before load add number of threads
-        options.setNumThreads(6); // choose number of thread according to your phone
+        options.setNumThreads(5); // choose number of thread according to your phone
         //if you want to increase frame-rate use maximum frame rate you phone support.
         // if you phone slow down due to this app reduce the number of threads
 
 
 
-        // load model
         interpreter = new Interpreter(loadModel(assetManager, modelPath), options);
 
-        // when model is successfully load
         Log.d("face_Recognition", "model is loaded");
 
-        // we will load haar cascade model
+
         try {
-            // define inputStream to read haar cascade file
+
             InputStream inputStream=context.getResources().openRawResource(R.raw.haarcascade_frontalface_alt);
 
-            // create a new folder to save classifier
             File cascadeDir = context.getDir("cascade", Context.MODE_PRIVATE);
 
-            // create a new cascade file in that folder
             File mCascadeFile = new File(cascadeDir,"haarcascade_frontalface_alt");
 
-            // define outputStream to save haarcascade_frontalface_alt inmCascadeFile
             FileOutputStream outputStream = new FileOutputStream(mCascadeFile);
 
             // create empty byte buffer to store byte
             byte[] buffer = new byte[4096];
             int bytRead;
 
-            //read byte in loop
             // when it read -1 that means no data to read
             while ((bytRead=inputStream.read(buffer)) != -1){
                 outputStream.write(buffer,0,bytRead);
@@ -130,49 +114,37 @@ public class face_Recognition  extends AppCompatActivity {
 
             // if cascade classifier is succesfully loaded
             Log.d("face_recognition", "classifier is loaded");
-
-            // select device and run
-            //before that check you code
         }
         catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    // create a new function with input Mat and output Mat
-    public Mat recognizeImage(Mat mat_image){
-        //cal this function in onCameraFrame of CameraActivity
 
-        // before doing process rotate mat_image by 90 degree
-        // as it is not properly align
+    public Mat recognizeImage(Mat mat_image){
+
         Core.flip(mat_image.t(),mat_image,1);
 
 
-        //do all processing here
         //convert mat_image to grayscale
         Mat grayscaleImage =new Mat();
         //                 input,   ouput,            convert type
         Imgproc.cvtColor(mat_image,grayscaleImage,Imgproc.COLOR_RGBA2GRAY);
 
 
-        //define height & width
         height=grayscaleImage.height();
         width=grayscaleImage.width();
 
 
         //define minimum height & width and width of face in frame
-        //below this height & width face will be neglected
         int absoluteFaceSize =(int) (height*0.1);
         MatOfRect faces = new MatOfRect();
 
-        // this will store all faces
-        //check if cascade classifier is loaded or not
+
         if (cascadeClassifier !=null){
             //detect face in frame
-            //                                     input,     output,        scale of face
             cascadeClassifier.detectMultiScale(grayscaleImage,faces,1.1,2,2,
                     new Size(absoluteFaceSize,absoluteFaceSize),new Size());
-                    // minimum size of face
         }
 
 
@@ -182,13 +154,10 @@ public class face_Recognition  extends AppCompatActivity {
 
         // loop through each faces
         for (int i=0; i<faceArray.length; i++){
-            //draw rectangle around faces
-            //               input/output                  end point            Color   RGB alpha       kalınlık
             Imgproc.rectangle(mat_image,faceArray[i].tl(),faceArray[i].br(),new Scalar(0,255,0,255), 2);
-            //                           starting point
 
 
-            //                  starting x coordinate       starting y coordinate
+
             Rect roi = new Rect((int)faceArray[i].tl().x, (int)faceArray[i].tl().y,
                     ((int)faceArray[i].br().x)-((int)faceArray[i].tl().x),
                     ((int)faceArray[i].br().y)-((int)faceArray[i].tl().y));
@@ -201,7 +170,7 @@ public class face_Recognition  extends AppCompatActivity {
             bitmap = Bitmap.createBitmap(cropped_rgb.cols(),cropped_rgb.rows(),Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(cropped_rgb,bitmap);
 
-            // scale bitmap to model input size 64
+            // scale bitmap to model input size 105
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap,INPUT_SIZE,INPUT_SIZE,false);
 
             // convert scaledBitmap to byteBuffer
@@ -222,21 +191,16 @@ public class face_Recognition  extends AppCompatActivity {
            // create a new function input as read_face & output as name
             String face_name=get_identity_name(read_face);
 
-            // we will puttext on frame
-            //              input/output        text
+
             Imgproc.putText(mat_image,""+face_name,
                     new Point((int)faceArray[i].tl().x+10,(int) faceArray[i].tl().y+20),
                     1,1.5,new Scalar(255,255,255,150),2);
-                    //     size                color: R  g   b  alpha  kalınlık
-            // it i starting point of face
 
 
            Log.d("sadsad",face_name);
 
-            // Write a message to the database
-            // ver tabanı am
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            //veri yolu
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();//veri yolu
             DatabaseReference veriyolu = database.getReference("humanID");
 
             veriyolu.child("name").setValue(face_name);
@@ -245,9 +209,6 @@ public class face_Recognition  extends AppCompatActivity {
             veriyolu.child("job").setValue(job);
         }
 
-
-
-        // before returning rotate it back by -90 degree
         Core.flip(mat_image.t(),mat_image,0);
 
         return  mat_image;
@@ -256,9 +217,7 @@ public class face_Recognition  extends AppCompatActivity {
     private String get_identity_name(float read_face) {
         String identityName="";
 
-        // There might ve another way to do tihs
-        /// but i am lazy
-        //if you have better way comment below.
+
         if (read_face >=0 & read_face <0.5){
             identityName="Courteney Cox";
             dateOfBirth = "15.06.1964";
@@ -461,9 +420,7 @@ public class face_Recognition  extends AppCompatActivity {
         //define input size
         int input_size=INPUT_SIZE;
 
-        // Multiply by 4 if input of model is float
-        // Multiply by 3 if input is RGB
-        // if input is GRAY 3->1
+
         byteBuffer=ByteBuffer.allocateDirect(4*1*input_size*input_size*3);
         byteBuffer.order(ByteOrder.nativeOrder());
         int[] intValues = new int[input_size*input_size];
@@ -482,19 +439,13 @@ public class face_Recognition  extends AppCompatActivity {
                 byteBuffer.putFloat((((val>>8)&0xFF))/255.0f);
                 byteBuffer.putFloat(((val&0xFF))/255.0f);
 
-                //this thing is important
-                // it is placing RGB to MSB to LSB
-
-
                 //scaling pixels by from 0-255 to 0-1
             }
         }
-        // retunr value
         return  byteBuffer;
     }
 
 
-    // this function will load model
     private MappedByteBuffer loadModel(AssetManager assetManager, String modelPath) throws IOException {
 
     // This will give description of modelPath
@@ -507,6 +458,4 @@ public class face_Recognition  extends AppCompatActivity {
     long declaredLength=assetFileDescriptor.getDeclaredLength();
     return  fileChannel.map(FileChannel.MapMode.READ_ONLY,startOffset,declaredLength);
     }
-
-
 }
